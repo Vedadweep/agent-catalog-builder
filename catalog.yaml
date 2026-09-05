@@ -1,0 +1,159 @@
+products:
+- product_id: classic-cotton-crew-tshirt
+  name: Classic Cotton Crew T-Shirt
+  category: Apparel > Menswear
+  description: Crafted from 100% breathable cotton fabric, this classic crew t-shirt
+    is perfect for comfortable daily wear.
+  price:
+    amount: 599.0
+    currency: INR
+  availability: in_stock
+  variants:
+  - variant_id: classic-cotton-crew-tshirt-size-s
+    attribute: size
+    value: S
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-size-m
+    attribute: size
+    value: M
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-size-l
+    attribute: size
+    value: L
+    price_delta: 50.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-size-xl
+    attribute: size
+    value: XL
+    price_delta: 50.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-color-black
+    attribute: color
+    value: Black
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-color-white
+    attribute: color
+    value: White
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: classic-cotton-crew-tshirt-color-navy-blue
+    attribute: color
+    value: Navy Blue
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  tags:
+  - menswear
+  - t-shirt
+  - crew neck
+  - cotton
+  - breathable
+  - casual wear
+  metadata:
+    source_confidence: 0.95
+    extraction_notes: Exact stock counts per variant are not provided in the listing.
+      General availability is stated as in stock.
+- product_id: wireless-bluetooth-earbuds-pro-x200
+  name: Wireless Bluetooth Earbuds Pro X200
+  category: Electronics/Audio
+  description: Wireless Bluetooth earbuds featuring Active Noise Cancellation (ANC),
+    30-hour battery life, and IPX5 water resistance.
+  price:
+    amount: 2499.0
+    currency: INR
+  availability: in_stock
+  variants:
+  - variant_id: wireless-bluetooth-earbuds-pro-x200-black
+    attribute: color
+    value: Black
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  tags:
+  - wireless
+  - bluetooth
+  - earbuds
+  - audio
+  - anc
+  - water-resistant
+  metadata:
+    source_confidence: 0.95
+    extraction_notes: Exact stock quantity is not specified in source text. Mentioned
+      that additional colors are coming soon, but only 'Black' is currently available.
+- product_id: handmade-ceramic-coffee-mug-set
+  name: Handmade Ceramic Coffee Mug Set (Set of 2)
+  category: Home & Kitchen
+  description: A set of 2 handmade ceramic coffee mugs featuring a rustic terracotta
+    finish. They are both microwave and dishwasher safe.
+  price:
+    amount: 899.0
+    currency: INR
+  availability: out_of_stock
+  variants: []
+  tags:
+  - handmade
+  - ceramic
+  - coffee mug
+  - mug set
+  - terracotta
+  - home & kitchen
+  - drinkware
+  metadata:
+    source_confidence: 0.95
+    extraction_notes: Item is listed as currently out of stock with restocking expected
+      next month. No size/color variants specified in the text.
+- product_id: running-shoes-aeroflex-3-0
+  name: Running Shoes - AeroFlex 3.0
+  category: footwear
+  description: Lightweight running shoes featuring a mesh upper and a cushioned sole
+    optimized for long runs.
+  price:
+    amount: 3200.0
+    currency: INR
+  availability: in_stock
+  variants:
+  - variant_id: running-shoes-aeroflex-3-0-size-7
+    attribute: size
+    value: '7'
+    price_delta: 0.0
+    stock_count: null
+    availability: preorder
+  - variant_id: running-shoes-aeroflex-3-0-size-8
+    attribute: size
+    value: '8'
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: running-shoes-aeroflex-3-0-size-9
+    attribute: size
+    value: '9'
+    price_delta: 0.0
+    stock_count: null
+    availability: in_stock
+  - variant_id: running-shoes-aeroflex-3-0-size-10
+    attribute: size
+    value: '10'
+    price_delta: 0.0
+    stock_count: null
+    availability: preorder
+  tags:
+  - running shoes
+  - footwear
+  - aeroflex
+  - mesh
+  - cushioned
+  - athletic
+  metadata:
+    source_confidence: 0.75
+    extraction_notes: Exact price deltas for sizes 7-10 are not specified beyond the
+      3200-3800 range, so price_delta is set to 0. Color options are unclear/unspecified
+      in listing. Exact stock counts for sizes 8 and 9 are missing.
