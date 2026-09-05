@@ -99,11 +99,11 @@ def run_catalog_build():
         audit_log.append(entry)
 
     # Write the final catalog as strict YAML
-    with open("catalog.yaml", "w") as f:
+    with open("catalog.yaml", "w", encoding="utf-8") as f:
         yaml.dump({"products": catalog}, f, sort_keys=False, allow_unicode=True)
 
     # Write the explainable audit trail
-    with open("audit_log.json", "w") as f:
+    with open("audit_log.json", "w", encoding="utf-8") as f:
         json.dump(audit_log, f, indent=2)
 
     success_count = sum(1 for e in audit_log if e["success"])

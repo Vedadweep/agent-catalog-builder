@@ -113,10 +113,17 @@ The pipeline:
 2. **Plural mismatch:** even the fuzzy filter missed `"t-shirts"` (customer phrasing)
    against `"t-shirt"` (stored tag) because substring matching only works in one
    direction. Fixed by normalizing trailing `'s'` on both sides before comparing.
+3. **Platform-specific encoding crash:** `extract.py` crashed with a `UnicodeEncodeError`
+   on Windows when Gemini generated a Unicode character (a non-breaking hyphen) in a
+   product description. The output file was opened without an explicit encoding, so
+   Python fell back to Windows' default `cp1252`, which can't represent that character.
+   Fixed by explicitly opening both output files with `encoding="utf-8"` — a reminder
+   that "works on my machine" often means "works on my OS's default encoding."
 
-Both bugs are a reminder that the same real-world messiness the extraction pipeline
-handles on the way in doesn't disappear on the way out — query-side language needs
-the same tolerance for inconsistency as merchant-side data does.
+These bugs are a reminder that the same real-world messiness the extraction pipeline
+handles on the way in doesn't disappear on the way out — query-side language and
+platform differences both need the same tolerance for inconsistency as merchant-side
+data does.
 
 ## Known Limitations
 
