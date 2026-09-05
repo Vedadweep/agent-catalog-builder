@@ -3,7 +3,7 @@ BuyerAgent simulates an AI shopping agent reading your merchant's catalog.
 Note the constructor: it receives its LLM and repository as arguments
 (Dependency Injection) rather than constructing them internally. This means
 you can test BuyerAgent with a fake repository and no real LLM call at all,
-and you can swap Gemini for Groq without touching this class.
+and you can swap providers without touching this class.
 """
 
 import json
@@ -39,14 +39,18 @@ Do not invent products or details not in the data provided.
 
 
 class BuyerAgent:
-    def __init__(self, repository: CatalogRepository, provider: str = "gemini"):
+    def __init__(self, repository: CatalogRepository, provider: str = "groq"):
         self._repository = repository
+        self._provider = provider
         self._llm = get_llm(provider)
 
+    def _other_provider(self) -> str:
+        return "gemini" if self._provider == "groq" else "groq"
+
     def _parse_intent(self, question: str, retries: int = 2) -> QueryIntent:
-        """Mirrors extract.py's resilience: retry, then fall back to Groq
-        if Gemini's output can't be parsed — a live demo shouldn't crash
-        just because one model call returned malformed JSON."""
+        """Retry, then fall back to the other provider if the current one's
+        output can't be parsed — a live demo shouldn't crash just because
+        one model call returned malformed JSON or hit a rate limit."""
         for attempt in range(retries):
             try:
                 response = self._llm.invoke(INTENT_PROMPT.format(question=question))
@@ -86,7 +90,14 @@ class BuyerAgent:
         matches = self._query_repository(intent)
 
         products_json = json.dumps([p.model_dump() for p in matches], indent=2)
-        response = self._llm.invoke(ANSWER_PROMPT.format(question=question, products_json=products_json))
+        prompt = ANSWER_PROMPT.format(question=question, products_json=products_json)
+        try:
+            response = self._llm.invoke(prompt)
+        except Exception as e:
+            print(f"  Answer generation failed ({e}); falling back to {self._other_provider()}...")
+            fallback_llm = get_llm(self._other_provider())
+            response = fallback_llm.invoke(prompt)
+
         answer_text = response.content
         if isinstance(answer_text, list):
             answer_text = "".join(b.get("text", "") for b in answer_text if isinstance(b, dict))

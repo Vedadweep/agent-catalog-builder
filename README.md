@@ -119,6 +119,14 @@ The pipeline:
    Python fell back to Windows' default `cp1252`, which can't represent that character.
    Fixed by explicitly opening both output files with `encoding="utf-8"` — a reminder
    that "works on my machine" often means "works on my OS's default encoding."
+4. **Incomplete fallback coverage:** during a live test run, Gemini's free tier hit its
+   daily cap (20 requests/day — much lower than Groq's free tier). `BuyerAgent`'s
+   `_parse_intent` correctly degraded to a broad search when this happened, but the
+   *second* LLM call in `answer()` (generating the final response) had no fallback at
+   all and crashed outright. This was a real asymmetry: resilience had been added to
+   one call site and quietly forgotten on the other. Fixed by switching the primary
+   provider to Groq (far higher free-tier limits) and adding matching fallback logic
+   to both LLM call sites, so either one degrades gracefully instead of crashing.
 
 These bugs are a reminder that the same real-world messiness the extraction pipeline
 handles on the way in doesn't disappear on the way out — query-side language and

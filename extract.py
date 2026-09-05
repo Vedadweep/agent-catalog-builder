@@ -31,17 +31,18 @@ Return ONLY a valid JSON object matching this exact structure (no markdown, no e
 RULES:
 - If pricing varies by variant, use the BASE/LOWEST price as "amount" and encode differences as price_delta on each variant.
 - If availability info is unclear, make your best judgement but lower source_confidence and explain in extraction_notes.
+- If different variants have different availability (e.g. some sizes in stock, others preorder), set per-variant availability instead of only relying on the top-level field.
 - NEVER invent details not present or implied in the text (e.g. don't guess a color if none is mentioned) — instead, note the gap in extraction_notes.
 - product_id must be lowercase, hyphen-separated, no spaces.
--If different variants have different availability (e.g. some sizes in stock, others preorder), set per-variant availability instead of only relying on the top-level field.
 
 MERCHANT LISTING:
 {listing}
 """
 
-def extract_one(listing: str, provider: str = "gemini", retries: int = 2) -> tuple[Product | None, str | None]:
+def extract_one(listing: str, provider: str = "groq", retries: int = 2) -> tuple[Product | None, str | None]:
     """
-    Attempts to extract and validate one listing. Falls back from gemini to groq on failure.
+    Attempts to extract and validate one listing. Falls back from groq to gemini on failure
+    (groq is primary: much higher free-tier daily limits than Gemini, which caps at 20/day).
     Returns (validated Product or None, raw error string or None).
     """
     llm = get_llm(provider)
@@ -64,9 +65,9 @@ def extract_one(listing: str, provider: str = "gemini", retries: int = 2) -> tup
         except (json.JSONDecodeError, ValidationError, Exception) as e:
             error_msg = f"[{provider}] attempt {attempt+1} failed: {type(e).__name__}: {e}"
             if attempt == retries - 1:
-                if provider == "gemini":
-                    print(f"  Falling back to groq after gemini failure...")
-                    return extract_one(listing, provider="groq", retries=retries)
+                if provider == "groq":
+                    print(f"  Falling back to gemini after groq failure...")
+                    return extract_one(listing, provider="gemini", retries=retries)
                 return None, error_msg
     return None, "Exhausted retries"
 
@@ -99,6 +100,9 @@ def run_catalog_build():
         audit_log.append(entry)
 
     # Write the final catalog as strict YAML
+    # encoding="utf-8" is required on Windows: without it, Python falls back to
+    # the system default (cp1252), which crashes on Unicode characters the LLM
+    # sometimes generates (e.g. non-breaking hyphens).
     with open("catalog.yaml", "w", encoding="utf-8") as f:
         yaml.dump({"products": catalog}, f, sort_keys=False, allow_unicode=True)
 

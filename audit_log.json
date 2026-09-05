@@ -1,38 +1,38 @@
 [
   {
     "listing_index": 0,
-    "timestamp": "2026-08-30T18:33:46.838484+00:00",
+    "timestamp": "2026-09-05T18:27:04.336462+00:00",
     "raw_input_preview": "Product: Classic Cotton Crew T-Shirt\n    We've got this in sizes S, M, L, XL. Pr...",
     "success": true,
     "product_id": "classic-cotton-crew-tshirt",
-    "source_confidence": 0.95,
-    "extraction_notes": "Exact stock counts per variant are not provided in the listing. General availability is stated as in stock."
+    "source_confidence": 0.98,
+    "extraction_notes": null
   },
   {
     "listing_index": 1,
-    "timestamp": "2026-08-30T18:33:57.866161+00:00",
+    "timestamp": "2026-09-05T18:28:17.850672+00:00",
     "raw_input_preview": "ITEM: Wireless Bluetooth Earbuds Pro X200\n    Price - \u20b92499\n    Category: Electr...",
     "success": true,
     "product_id": "wireless-bluetooth-earbuds-pro-x200",
     "source_confidence": 0.95,
-    "extraction_notes": "Exact stock quantity is not specified in source text. Mentioned that additional colors are coming soon, but only 'Black' is currently available."
+    "extraction_notes": "Stock count not specified; assumed unknown. Only black color listed; future colors mentioned but not detailed."
   },
   {
     "listing_index": 2,
-    "timestamp": "2026-08-30T18:34:09.126388+00:00",
+    "timestamp": "2026-09-05T18:29:31.787268+00:00",
     "raw_input_preview": "Handmade Ceramic Coffee Mug Set (Set of 2)\n    Price: 899 rupees\n    category - ...",
     "success": true,
     "product_id": "handmade-ceramic-coffee-mug-set",
     "source_confidence": 0.95,
-    "extraction_notes": "Item is listed as currently out of stock with restocking expected next month. No size/color variants specified in the text."
+    "extraction_notes": null
   },
   {
     "listing_index": 3,
-    "timestamp": "2026-08-30T18:34:28.380943+00:00",
+    "timestamp": "2026-09-05T18:30:47.772066+00:00",
     "raw_input_preview": "Product Name: Running Shoes - AeroFlex 3.0\n    category: footwear\n    Price star...",
     "success": true,
     "product_id": "running-shoes-aeroflex-3-0",
-    "source_confidence": 0.75,
-    "extraction_notes": "Exact price deltas for sizes 7-10 are not specified beyond the 3200-3800 range, so price_delta is set to 0. Color options are unclear/unspecified in listing. Exact stock counts for sizes 8 and 9 are missing."
+    "source_confidence": 0.8,
+    "extraction_notes": "Price variation by size is mentioned (3200\u20113800) but exact mapping to each size is not provided; price_delta set to 0 for all variants. Color options are not specified; assumed standard black/grey. Stock counts are not given, only availability status."
   }
 ]

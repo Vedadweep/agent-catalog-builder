@@ -2,81 +2,84 @@ products:
 - product_id: classic-cotton-crew-tshirt
   name: Classic Cotton Crew T-Shirt
   category: Apparel > Menswear
-  description: Crafted from 100% breathable cotton, this classic crew t-shirt is perfect
-    for daily wear.
+  description: A classic crew neck T‑shirt made from 100% breathable cotton, ideal
+    for everyday wear.
   price:
     amount: 599.0
     currency: INR
   availability: in_stock
   variants:
-  - variant_id: classic-cotton-crew-tshirt-size-s
-    attribute: Size
+  - variant_id: size-s
+    attribute: size
     value: S
     price_delta: 0.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-size-m
-    attribute: Size
+  - variant_id: size-m
+    attribute: size
     value: M
     price_delta: 0.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-size-l
-    attribute: Size
+  - variant_id: size-l
+    attribute: size
     value: L
     price_delta: 50.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-size-xl
-    attribute: Size
+  - variant_id: size-xl
+    attribute: size
     value: XL
     price_delta: 50.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-color-black
-    attribute: Color
+  - variant_id: color-black
+    attribute: color
     value: Black
     price_delta: 0.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-color-white
-    attribute: Color
+  - variant_id: color-white
+    attribute: color
     value: White
     price_delta: 0.0
     stock_count: null
     availability: in_stock
-  - variant_id: classic-cotton-crew-tshirt-color-navy-blue
-    attribute: Color
+  - variant_id: color-navy-blue
+    attribute: color
     value: Navy Blue
     price_delta: 0.0
     stock_count: null
     availability: in_stock
   tags:
   - t-shirt
-  - crew neck
   - cotton
-  - menswear
+  - crew neck
+  - men
   - apparel
-  - casual wear
-  - breathable
+  - black
+  - white
+  - navy blue
+  - size s
+  - size m
+  - size l
+  - size xl
   metadata:
-    source_confidence: 0.95
-    extraction_notes: Exact numerical stock counts were not provided in the source
-      text; availability set to 'in_stock' based on explicit listing status. Variants
-      are split by individual Size and Color attributes.
+    source_confidence: 0.98
+    extraction_notes: null
 - product_id: wireless-bluetooth-earbuds-pro-x200
   name: Wireless Bluetooth Earbuds Pro X200
   category: Electronics/Audio
-  description: Wireless Bluetooth earbuds featuring Active Noise Cancellation (ANC),
-    30-hour battery life, and IPX5 water resistance.
+  description: Wireless Bluetooth Earbuds Pro X200 featuring 30 hr battery life, active
+    noise cancellation, and IPX5 water resistance.
   price:
     amount: 2499.0
     currency: INR
   availability: in_stock
   variants:
-  - variant_id: x200-black
+  - variant_id: black
     attribute: color
-    value: Black
+    value: black
     price_delta: 0.0
     stock_count: null
     availability: in_stock
@@ -84,19 +87,19 @@ products:
   - wireless
   - bluetooth
   - earbuds
-  - anc
   - audio
-  - ipx5
+  - ANC
   - water-resistant
+  - electronics
   metadata:
     source_confidence: 0.95
-    extraction_notes: Exact stock count is missing. Listing mentions additional colors
-      coming soon, but only Black is currently extracted as an available variant.
+    extraction_notes: Stock count not specified; assumed unknown. Only black color
+      listed; future colors mentioned but not detailed.
 - product_id: handmade-ceramic-coffee-mug-set
   name: Handmade Ceramic Coffee Mug Set (Set of 2)
   category: home & kitchen
-  description: A set of two handmade ceramic coffee mugs featuring a rustic terracotta
-    finish. These mugs are both microwave and dishwasher safe.
+  description: A handcrafted ceramic coffee mug set of two with a rustic terracotta
+    finish, safe for microwave and dishwasher use.
   price:
     amount: 899.0
     currency: INR
@@ -107,12 +110,15 @@ products:
   - ceramic
   - coffee mug
   - mug set
+  - rustic
   - terracotta
-  - home & kitchen
+  - microwave safe
+  - dishwasher safe
+  - home
+  - kitchen
   metadata:
     source_confidence: 0.95
-    extraction_notes: Listing states 'Currently out of stock, restocking next month'.
-      Categorized as out_of_stock. No specific individual variants listed.
+    extraction_notes: null
 - product_id: running-shoes-aeroflex-3-0
   name: Running Shoes - AeroFlex 3.0
   category: footwear
@@ -155,4 +161,7 @@ products:
   - cushioned sole
   metadata:
     source_confidence: 0.8
-    extraction_notes: Price variation by size is mentioned only as a range 
+    extraction_notes: Price variation by size is mentioned (3200‑3800) but exact mapping
+      to each size is not provided; price_delta set to 0 for all variants. Color options
+      are not specified; assumed standard black/grey. Stock counts are not given,
+      only availability status.
